@@ -1,0 +1,21 @@
+{
+  "name": "technomad-express",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": "git@github.com:wommy/technomad-express.git",
+  "author": "wommy <tom@technomad.media>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.5",
+    "nodemon": "^2.0.9",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  }
+}
