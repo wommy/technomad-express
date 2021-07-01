@@ -19,7 +19,9 @@ export default express.Router()
 			return res.status(400).json({msg:'please include a name'})
 		}
 		todos.push(newTodo)
-		res.json(todos)
+		res
+			.json(todos)
+			// .redirect('/')
 	})
 	.put('/:id', (req,res)=> {
 		todos.some(todo => todo.id === req.params.id)
