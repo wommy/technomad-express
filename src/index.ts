@@ -1,35 +1,28 @@
-import express from 'express'
 import path from 'path'
+import express from 'express'
 import exphbs from 'express-handlebars'
 // import logger from './middleware/logger'
-import router from './routes/api/todos'
 import todos from './database/Todos'
+import router from './routes/api/todos'
 
-const app = express()
 const PORT = process.env.PORT || 5000
+express()
+.set('views', path.join(__dirname,'views'))
+.set('view engine', 'handlebars')
+.engine('handlebars', exphbs())
 
-// middleware
-// app.use(logger)
+// MIDDLEWARE //
+// .use(logger)
+.use(express.json())
+.use(express.urlencoded({extended:false}))
+.use(express.static(path.join(__dirname, 'public')))
 
-
-
-app
-	.engine('handlebars', exphbs())
-	.set('views', path.join(__dirname,'views'))
-	.set('view engine', 'handlebars')
-
-app
-	.use(express.json())
-	.use(express.urlencoded({extended:false}))
-
-app.get('/', (req,res)=> res.render('index',{
-	title: 'todo app',
-	todos
+// ROUTES //
+.use('/api/todos', router)
+.get('/', (req,res)=> res.render('index', { 
+	todos, 
+	nav:['all','todo','done'] 
 }))
 
-// static folder
-app.use(express.static(path.join(__dirname, 'public')))
+.listen(PORT, ()=> console.log(`server running on port:${PORT}`))
 
-app.use('/api/todos', router)
-
-app.listen(PORT, ()=> console.log(`server running on port:${PORT}`))
