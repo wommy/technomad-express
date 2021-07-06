@@ -8,8 +8,8 @@ import router from './routes/api/todos'
 const PORT = process.env.PORT || 5000
 express()
 .set('views', path.join(__dirname,'views'))
-.set('view engine', 'handlebars')
-.engine('handlebars', exphbs())
+.engine('.hbs', exphbs({extname: '.hbs'}))
+.set('view engine', '.hbs')
 
 // MIDDLEWARE //
 // .use(logger)
