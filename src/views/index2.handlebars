@@ -1,0 +1,35 @@
+<h1 class="text-center mb-3">todos</h1>
+
+<form action="/api/todos" method="POST" class="mb-4" id="myForm">
+  <div class="form-row">
+    <div class="col-auto">
+      <label for="name">name</label>
+      <input type="text" name="name" class="form-control" required />
+    </div>
+    <div class="col-auto">
+      <label for="isDone">isDone</label>
+      <input type="checkbox" name="isDone" class="form-check" />
+    </div>
+    <div class="col-auto">
+      <input type="submit" value="add todo" class="btn btn-primary" />
+    </div>
+  </div>
+</form>
+
+<h4>list nav</h4>
+<nav>
+  {{#each nav}}
+    <a href="#{{this}}">{{this}}</a>
+  {{/each}}
+  {{#each todos}}
+    <a href="#{{this.category}}">{{this.category}}</a>
+  {{/each}}
+</nav>
+<ul class="list-group">
+  {{#each todos}}
+    <li class="list-group-item">
+      {{this.category}} - {{this.name}} - {{this.isDone}}
+    </li>
+  {{/each}}
+</ul>
+<a href="/api/todos" class="btn btn-light mt-4">visit API</a>
